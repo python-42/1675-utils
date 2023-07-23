@@ -72,11 +72,11 @@ public abstract class JsonConfigurableSubsystem extends SubsystemBase {
             throw new Error(e);
         }
         while (scan.hasNext()) {
-            rtn += scan.next().replaceAll("\n", "").replaceAll("{", "").replace("}", "").replace("\"", "").replace(" ", "");
+            rtn += scan.next();
         }
         scan.close();
 
-        return rtn.replaceAll("[^{}\"\n]", "").replaceAll(" ", "");
+        return rtn.replaceAll("[{}\"\n]", "").replaceAll(" ", "");//java handles whitespaces weirdly with regex so it is simpler to do it this way
     }
 
     /**
